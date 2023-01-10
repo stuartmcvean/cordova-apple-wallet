@@ -1,36 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-apple-wallet" version="1.0.0">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin 
+    id="com.stuartmcvean.codovaapplewallet" 
+    version="1.2.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0">
 
     <name>AppleWallet</name>
-    <description>This plugin provides support for adding your credit/debit cards to Apple Wallet. It also can check if the credit/debit card exists in Wallet or any paired device e.g. Apple Watch </description>
-    <author>Enigma Labs</author>
-    <keywords>Apple,Wallet,iOS</keywords>
-    <license>Apache 2.0</license>
-    <engines>
-        <engine name="cordova" version=">=3.0.0" />
-    </engines>
-
+    
+    <js-module name="AppleWallet" src="www/appleWallet.js">
+        <clobbers target="cordova.plugins.AppleWallet" />
+    </js-module>
+    
     <platform name="ios">
-
-        <hook src="hooks/before_build.js" type="before_build" />
-
-        <config-file target="config.xml" parent="/*">
-            <feature name="AppleWallet">
-                <param name="ios-package" value="AppleWallet" onload="true"/>
+        <config-file parent="/*" target="config.xml">
+            <feature name="AppleWalletPlugin">
+                <param name="ios-package" value="AppleWalletPlugin" />
             </feature>
         </config-file>
-          
-        <js-module src="www/appleWallet.js" name="AppleWallet">
-            <clobbers target="AppleWallet" />
-        </js-module>
-
+        
         <header-file src="src/ios/CDVAppleWallet.h" />
 
         <source-file src="src/ios/CDVAppleWallet.m" />
-    
-        <framework src="PassKit.framework" />
-        <framework src="WatchConnectivity.framework" />
-        
     </platform>
+    
 </plugin>
